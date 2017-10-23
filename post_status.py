@@ -1,10 +1,11 @@
 #!/usr/bin/env python
 
+import subprocess
 #Prepare the environment
 subprocess.call("./prepare_env.sh")
 
 #Import all necessary modules
-import subprocess, tweepy, time, random, sys
+import tweepy, time, random, sys
 
 #Import function from check_tweet.py file
 from check_tweet import check_dup
