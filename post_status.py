@@ -11,7 +11,7 @@ import tweepy, time, random, sys
 from check_tweet import check_dup
 
 #Generate time in seconds to sleep before executing the script
-time.sleep(random.randint(1,10)*1800)
+#time.sleep(random.randint(1,10)*1800)
 
 #Import credentials from credentials.py file
 from credentials import *
