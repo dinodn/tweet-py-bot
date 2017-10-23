@@ -4,13 +4,12 @@ myPATH=`pwd`
 echo $myPATH/
 crontab -l 2>/dev/null; echo "0 */6 * * * $myPATH/post_status.py" | crontab -
 
-#Check if EPEL repo,pip and subprocess module installed
+#Check if EPEL repo,pip module installed
 repo_stat=`yum repolist | grep epel`
 repo_exit_status=`echo $?`
 pip_stat=`which pip`
 pip_exit=`echo $?`
-subprocess_stat=`pip list|grep subprocess`
-subrocess_exit=`echo $?`
+
 echo -e "`date` Running setup.sh" >> bot-tweet.log
 
 #Install if Epel Repo is not installed
@@ -25,7 +24,4 @@ if [ $pip_exit != 0 ]; then
  yum install python-pip -y
 fi
 
-if [ $subrocess_exit != 0 ]; then
-  pip install subprocess
-fi
 
