@@ -1,4 +1,8 @@
 #!/usr/bin/env python
+
+#Prepare the environment
+subprocess.call("./prepare_env.sh")
+
 #Import all necessary modules
 import subprocess, tweepy, time, random, sys
 
@@ -10,9 +14,6 @@ time.sleep(random.randint(1,10)*1800)
 
 #Import credentials from credentials.py file
 from credentials import *
-
-#Prepare the environment
-subprocess.call("./prepare_env.sh")
 
 #Feed the message to a file for Tweeting
 def feed_message():
