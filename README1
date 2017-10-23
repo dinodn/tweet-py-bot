@@ -1,0 +1,24 @@
+# Tested on Red Hat Enterprise Linux Server release 7.4 (Maipo) AWS Free Tier
+
+1) Script is written on Python along with bash script for setting up the environment and schedule script to run
+
+2) This script will be added to CronJob to run every 6 hours, 0th minute.
+   CronJob will trigger the script as mentioned above, and then there is sleep function added in python script(post_status.py) which will generate a random number of seconds with in a range of 30 minutes to 5 hours to let the script tweet in random times, thrice a Day.
+
+3) RUN ./setup.sh to get the script added into CronJob
+
+4) For Tweeting a message, Python Module Tweepy is used.
+
+5) For generating a message, service fortune is used. As Twitter only allows 140 characters at a time, fortune use custom file(my_quotes.txt) to generate quotes.
+
+6) Flow of the script : 
+
+    a)  ./setup.sh  Assign Python script(post_status.py) to Crontab to run every 6 hour, 0th minute
+    b)  Cron triggers at 6th hour, runs post_status.py
+    c)  Python script(post_status.py) goes to sleep mode first after generating a random number in seconds, between 30 minutes to 5 hours
+    d)  Once the sleep time is over, python script runs prepare_env.sh bash script using Subprocess module to setup/ensure the proper environment
+    e)  prepare_env.sh checks whether PIP, TWEEPY Modules, EPEL Repo and Fortune Service are installed or not. If not, it installs all of them. All these actions are logged to bot-tweet.log file with its corresponding time stamp.
+    f)  Once the env is set, python script call a function feed_message() which run FORTUNE service and load a sample quote from file MY_QUOTES.txt, this function then loads that particular quote to MESSAGE.TXT
+    g)  Next, script loads a function check_dup() from check_tweet.py to see if this particular message is already tweeted or not. If yes, it calls feed_message() function again. Else, it will proceed to authenticate tweeter app and post the quote on Twitter.
+    h) Every tweeted quotes are also logged to twitted_messages file for check_dup() function to check.
+    i) check_dup() loads the current status message which is about to be tweeted and search in twitted_messages log file whether that line exists or not. If yes, the function calls feed_message() to load a new status message.
