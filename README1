@@ -1,5 +1,11 @@
 # Tested on Red Hat Enterprise Linux Server release 7.4 (Maipo) AWS Free Tier
 
+** Please uncomment crontab entry line in setup.sh script and sleep function line in post_status.py script if you want to actually schedule it and post it at random times.
+
+   Please set executable permission for setup.sh and run the same to initiate the task
+   
+   Authentication credentials should be saved in crdentials.py file
+
 1) Script is written on Python along with bash script for setting up the environment and schedule script to run
 
 2) This script will be added to CronJob to run every 6 hours, 0th minute.
