@@ -4,6 +4,10 @@ myPATH=`pwd`
 echo $myPATH/
 crontab -l 2>/dev/null; echo "0 */6 * * * $myPATH/post_status.py" | crontab -
 
+#Set Executable permission for python and shell scripts
+chmod 755 $myPATH/*.py
+chmod 755 $myPATH/*.sh
+
 #Check if EPEL repo,pip module installed
 repo_stat=`yum repolist | grep epel`
 repo_exit_status=`echo $?`
