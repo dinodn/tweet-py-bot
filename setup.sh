@@ -8,6 +8,11 @@ crontab -l 2>/dev/null; echo "0 */6 * * * $myPATH/post_status.py" | crontab -
 chmod 755 $myPATH/*.py
 chmod 755 $myPATH/*.sh
 
+#Set empty files:
+touch new-tweet
+touch twitted_messages
+
+
 #Check if EPEL repo,pip module installed
 repo_stat=`yum repolist | grep epel`
 repo_exit_status=`echo $?`
