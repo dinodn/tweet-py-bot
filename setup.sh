@@ -10,7 +10,7 @@ chmod 755 $myPATH/*.sh
 
 #Set empty files:
 touch new-tweet
-touch twitted_messages
+touch tweeted_messages
 
 
 #Check if EPEL repo,pip module installed
